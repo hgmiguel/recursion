@@ -71,8 +71,29 @@
     (sequence-contains? elem (rest a-seq))
     ))
 
+
+(defn my-take-while [pred? a-seq]
+  (cond
+    (empty? a-seq)
+    '()
+    (pred? (first a-seq))
+    (cons (first a-seq)
+          (my-take-while pred? (rest a-seq))
+          )
+    :else
+    '()
+    ))
+
 (defn my-drop-while [pred? a-seq]
-  [:-])
+  (cond
+    (empty? a-seq)
+    []
+    ))
+
+(my-drop-while odd?  [1 2 3 4])  ;=> (2 3 4)
+(my-drop-while odd?  [1 3 4 5])  ;=> (4 5)
+(my-drop-while even?  [1 3 4 5]) ;=> (1 3 4 5)
+(my-drop-while odd?  [])         ;=> ()
 
 (defn seq= [a-seq b-seq]
   :-)
