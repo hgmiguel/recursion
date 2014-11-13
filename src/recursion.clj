@@ -1,6 +1,4 @@
-(ns recursion)
-
-(defn product [coll]
+(ns recursion) (defn product [coll]
   (if (empty? coll)
     1
     (* (first coll)
@@ -87,16 +85,22 @@
 (defn my-drop-while [pred? a-seq]
   (cond
     (empty? a-seq)
-    []
+    '()
+    (not (pred? (first a-seq)) )
+    (seq a-seq )
+    :else
+    (my-drop-while pred? (rest a-seq ))
     ))
 
-(my-drop-while odd?  [1 2 3 4])  ;=> (2 3 4)
-(my-drop-while odd?  [1 3 4 5])  ;=> (4 5)
-(my-drop-while even?  [1 3 4 5]) ;=> (1 3 4 5)
-(my-drop-while odd?  [])         ;=> ()
-
 (defn seq= [a-seq b-seq]
-  :-)
+  (cond
+    (and (empty? a-seq) (empty? b-seq))
+    true
+    (= (first a-seq) (first b-seq))
+    (seq= (rest a-seq) (rest b-seq))
+    :else
+    false
+    ))
 
 (defn my-map [f seq-1 seq-2]
   [:-])
